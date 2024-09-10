@@ -1,0 +1,27 @@
+﻿<Window x:Class="WpfAppMusic.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfAppMusic"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <StackPanel>
+        <Menu>
+            <MenuItem Header="Добавить" Click="zaglushka1"/>
+            <MenuItem Header="Удалить" Click="zaglushka2"/>
+        </Menu>
+        <Grid>
+            <ListView ItemsSource="{Binding Sigma}">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="ID" DisplayMemberBinding="{Binding ID}"/>
+                        <GridViewColumn Header="Title"/>
+                        <GridViewColumn Header="Artis"/>
+                        <GridViewColumn Header="Album"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </Grid>
+    </StackPanel>
+</Window>
