@@ -5,23 +5,57 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfAppMusic"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="720" Width="1280">
     <StackPanel>
-        <Menu>
-            <MenuItem Header="Добавить" Click="zaglushka1"/>
-            <MenuItem Header="Удалить" Click="zaglushka2"/>
-        </Menu>
-        <Grid>
-            <ListView ItemsSource="{Binding Sigma}">
-                <ListView.View>
-                    <GridView>
-                        <GridViewColumn Header="ID" DisplayMemberBinding="{Binding ID}"/>
-                        <GridViewColumn Header="Title"/>
-                        <GridViewColumn Header="Artis"/>
-                        <GridViewColumn Header="Album"/>
-                    </GridView>
-                </ListView.View>
-            </ListView>
-        </Grid>
+        <StackPanel>
+            <ScrollViewer>
+                <ListView ItemsSource="{Binding Musics}" SelectedItem="{Binding SelectedMusic}">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="ID" DisplayMemberBinding="{Binding ID}" Width="25"/>
+                            <GridViewColumn Header="Title" DisplayMemberBinding="{Binding Title}" Width="250"/>
+                            <GridViewColumn Header="Artist" DisplayMemberBinding="{Binding Artist_ID}" Width="150"/>
+                            <GridViewColumn Header="Album" DisplayMemberBinding="{Binding Album_ID}" Width="150"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </ScrollViewer>
+            <StackPanel Orientation="Horizontal">
+                <Button Content="Добавить" Click="AddMusic"/>
+                <Button Content="Изменить" Click="EditMusic"/>
+                <Button Content="Удалить" Click="DeleteMusic"/>
+            </StackPanel>
+            <ScrollViewer>
+                <ListView ItemsSource="{Binding Artists}" SelectedItem="{Binding SelectedArtist}">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="ID" DisplayMemberBinding="{Binding ID}" Width="25"/>
+                            <GridViewColumn Header="Title" DisplayMemberBinding="{Binding FirstName}" Width="150"/>
+                            <GridViewColumn Header="Artist" DisplayMemberBinding="{Binding LastName}" Width="150"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </ScrollViewer>
+            <StackPanel Orientation="Horizontal">
+                <Button Content="Добавить" Click="AddArtist"/>
+                <Button Content="Изменить" Click="EditArtist"/>
+                <Button Content="Удалить" Click="DeleteArtist"/>
+            </StackPanel>
+            <ScrollViewer>
+                <ListView ItemsSource="{Binding Albums}" SelectedItem="{Binding SelectedALbum}">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="ID" DisplayMemberBinding="{Binding ID}" Width="25"/>
+                            <GridViewColumn Header="Title" DisplayMemberBinding="{Binding Name}" Width="250"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </ScrollViewer>
+            <StackPanel Orientation="Horizontal">
+                <Button Content="Добавить" Click="AddAlbum"/>
+                <Button Content="Изменить" Click="EditAlbum"/>
+                <Button Content="Удалить" Click="DeleteAlbum"/>
+            </StackPanel>
+        </StackPanel>
     </StackPanel>
 </Window>

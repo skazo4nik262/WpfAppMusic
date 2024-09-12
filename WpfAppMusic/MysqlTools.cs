@@ -18,7 +18,7 @@ namespace WpfAppMusic
             var attribute = type.GetCustomAttributes(typeof(MysqlTableAttribute), false).FirstOrDefault() as MysqlTableAttribute;
             var props = type.GetProperties();
             string table = attribute.TableName;
-            string sql = "select * from `" + table + "`" + whereSql;
+            string sql = "select * from `" + table + "` " + whereSql;
             using (MySqlCommand mySqlCommand = new MySqlCommand(sql, mysql))
             using (MySqlDataReader dr = mySqlCommand.ExecuteReader())
             {
@@ -30,10 +30,11 @@ namespace WpfAppMusic
                     {
                         string column = dr.GetName(i);
                         foreach (var prop in props)
-                        {
+                        { 
                             var attributeProp = prop.GetCustomAttributes(typeof(MysqlColumnAttribute), false).FirstOrDefault() as MysqlColumnAttribute;
                             if (attributeProp != null && attributeProp.ColumnName == column)
                             {
+                               
                                 if (!dr.IsDBNull(i))
                                     prop.SetValue(row, dr.GetValue(i));
                                 break;
@@ -149,7 +150,7 @@ namespace WpfAppMusic
             sb.Append(");");
             string sql = sb.ToString();
             int count = 0;
-            row.Hash = Guid.NewGuid().ToString();
+            //row.Hash = Guid.NewGuid().ToString();
             using (var ms = new MySqlCommand(sql, mysql))
             {
                 foreach (var property in props)
@@ -161,7 +162,7 @@ namespace WpfAppMusic
                 count = ms.ExecuteNonQuery();
             }
 
-            sql = "select id from `" + attribute.TableName + "` where create_hash = '" + row.Hash + "'";
+            sql = "select id from `" + attribute.TableName;// + "` where create_hash = '" + row.Hash + "'";
             using (var ms = new MySqlCommand(sql, mysql))
             using (var dr = ms.ExecuteReader())
             {
@@ -173,7 +174,7 @@ namespace WpfAppMusic
 
         internal static T SelectRowFromTable<T>(int id)
         {
-            var result = SimpleSelectFromTable<T>("where id = " + id);
+            var result = SimpleSelectFromTable<T>("where ID = " + id);
             return result.FirstOrDefault();
         }
 

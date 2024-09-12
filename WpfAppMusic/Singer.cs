@@ -15,5 +15,7 @@ namespace WpfAppMusic
         public string FirstName { get; set; }
         [MysqlColumn("LastName")]
         public string LastName { get; set; }
+        [MysqlRelation("Music", "Singer_ID")]
+        public List<Music> Musics { get; set; }
     }
 }

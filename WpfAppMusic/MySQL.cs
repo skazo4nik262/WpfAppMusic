@@ -1,10 +1,11 @@
-﻿using MySqlConnector;
+﻿/*using MySqlConnector;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WpfAppMusic;
+
 
     MySqlConnection mySqlConnection;
     MySqlConnectionStringBuilder sb =
@@ -28,5 +29,5 @@ using WpfAppMusic;
         return;
     }
     
-    MysqlTools.SetConnection(mySqlConnection);
+    MysqlTools.SetConnection(mySqlConnection);*/
     
